@@ -119,7 +119,7 @@ const LoginModel = () => {
                         cursor-pointer
                         hover:underline"
                     >
-                        Log in
+                        SignUp
                     </div>
                 </div>
             </div>
