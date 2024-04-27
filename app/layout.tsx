@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar/Navbar";
+
 import RegisterModal from "./components/Modals/RegisterModal";
 import LoginModel from "./components/Modals/LoginModel";
+import RentModal from "./components/Modals/RentModal";
 
 import ToasterProvider from "./Providers/ToasterProvider";
 import getCurrentUser from "./actions/getCurrentUser";
@@ -25,6 +27,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
+        <RentModal />
         <LoginModel />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
