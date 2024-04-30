@@ -20,16 +20,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 }) => {
 
     const handleUpload = useCallback((result: any) => {
-        onChange(result.info.publicId);
+        onChange(result.info.secure_url);
     }, [onChange]);
 
     return (
         <CldUploadWidget
-            onUploadAdded={handleUpload}
             uploadPreset="ptqeubac"
             options={{
-                maxFiles: 1
+                maxFiles: 1,
             }}
+            onSuccess={handleUpload}
         >
             {({ open }) => {
                 return (
