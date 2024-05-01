@@ -7,7 +7,9 @@ export default async function Home() {
 
   if (listings?.length === 0) {
     return (
-      <EmptyState showReset />
+      <>
+        <EmptyState showReset />
+      </>
     )
   }
 
@@ -25,9 +27,7 @@ export default async function Home() {
       >
         {listings?.map((listing: any) => {
           return (
-            <div className="text-red-400" key={listing.title}>
-              <h1>{listing.title}</h1>
-            </div>
+            <div key={listing.title}>{listing.title}</div>
           )
         })}
       </div>
