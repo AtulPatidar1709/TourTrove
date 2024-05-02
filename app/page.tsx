@@ -1,9 +1,12 @@
+import getCurrentUser from "./actions/getCurrentUser";
 import getListings from "./actions/getListings";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
+import ListingCard from "./components/Listings/ListingCard"
 
 export default async function Home() {
   const listings = await getListings();
+  const currentUser = await getCurrentUser();
 
   if (listings?.length === 0) {
     return (
@@ -15,7 +18,7 @@ export default async function Home() {
 
   return (
     <Container>
-      <div className="pt-4 
+      <div className="pt-[8rem] 
                       grid 
                       grid-cols-1 
                       sm:grid-cols-2 
@@ -25,12 +28,16 @@ export default async function Home() {
                       2xl:grid-cols-6 
                       gap-8"
       >
-        {listings?.map((listing: any) => {
+        {listings.map((listing: any) => {
           return (
-            <div key={listing.title}>{listing.title}</div>
-          )
+            <ListingCard
+              currentUser={currentUser}
+              key={listing.id}
+              data={listing}
+            />
+          );
         })}
       </div>
-    </Container>
+    </Container >
   );
 }
