@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Range } from "react-date-range";
 import { useRouter } from "next/navigation";
 import { Listing, Reservation } from "@prisma/client"
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
@@ -12,7 +13,7 @@ import ListingHead from "@/app/components/Listings/ListingHead";
 import ListingInfo from "@/app/components/Listings/ListingInfo";
 import { categories } from "@/app/components/Navbar/Categories";
 
-import { safeUser } from "@/app/types";
+import { safeReservation, safeUser } from "@/app/types";
 import useLoginModel from "@/app/hooks/useLoginModel";
 import ListingReservation from "@/app/components/Listings/ListingReservation";
 
@@ -53,7 +54,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
     const [isLoading, setIsLoading] = useState(false);
     const [totalPrice, setTotalPrice] = useState(listing.price);
-    const [dateRange, setDateRange] = useState(initialDateRange);
+    const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
     const onCreateReservation = useCallback(
         () => {
@@ -103,8 +104,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
             }
         }
     }, [dateRange, listing.price])
-
-
 
     const category = useMemo(() => {
         return categories.find((item) =>
