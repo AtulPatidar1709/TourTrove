@@ -13,6 +13,7 @@ import { safeUser } from "@/app/types";
 import Avatar from "../Avatar";
 
 import { AiOutlineMenu } from "react-icons/ai";
+import { useRouter } from "next/navigation";
 
 
 interface UserMenuProps {
@@ -22,6 +23,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     currentUser
 }) => {
+    const router = useRouter();
     const RegisterModal = useRegisterModel();
     const loginModel = useLoginModel();
     const rentModel = useRentModel();
@@ -62,9 +64,9 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     <div className="flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
-                                <MenuItem onClick={() => { }} label="My trips" />
-                                <MenuItem onClick={() => { }} label="My favorites" />
-                                <MenuItem onClick={() => { }} label="My reservations" />
+                                <MenuItem onClick={() => router.push("/trips")} label="My trips" />
+                                <MenuItem onClick={() => router.push("/favorites")} label="My favorites" />
+                                <MenuItem onClick={() => router.push("/reservations")} label="My reservations" />
                                 <MenuItem onClick={() => { }} label="My properties" />
                                 <MenuItem onClick={rentModel.onOpen} label="Airbnb My Home" />
                                 <MenuItem onClick={() => signOut()} label="Logout" />
