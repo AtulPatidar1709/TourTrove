@@ -12,9 +12,8 @@ import { Range } from "react-date-range";
 import useSearchModel from "@/app/hooks/useSearchModal";
 import CountrySelect, { CountrySelectValue } from "../Input/CountrySelect";
 import Heading from '../Heading';
-import Map from '../Map';
+// import Map from '../Map';
 import Calender from '../Input/Calender';
-import { DiCisco } from 'react-icons/di';
 import Counter from '../Input/Counter';
 
 enum STEPS {
@@ -157,13 +156,13 @@ const SearchModal = () => {
                     title='Rooms'
                     subtitle='How many rooms do you need?'
                     value={roomCount}
-                    onChange={(value) => setGuestCount(value)}
+                    onChange={(value) => setRoomCount(value)}
                 />
                 <Counter
                     title='Bathrooms'
                     subtitle='How many Bathrooms do you need?'
                     value={bathroomCount}
-                    onChange={(value) => setGuestCount(value)}
+                    onChange={(value) => setBathroomCount(value)}
                 />
             </div>
         )
