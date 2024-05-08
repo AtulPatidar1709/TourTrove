@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import { authOptions } from "@/config/authOptions"
+import { authOptions } from "@/app/libs/config/authOptions";
 
 // import { PrismaAdapter } from "@next-auth/prisma-adapter"
 // import prisma from "@/app/libs/Prismadb"
