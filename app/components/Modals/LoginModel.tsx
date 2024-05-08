@@ -119,7 +119,7 @@ const LoginModel = () => {
             >
                 <div className="justify-center flex flex-row items-center gap-2">
                     <div>
-                        Don't have an account?
+                        Don&lsquo;t have an account?
                     </div>
                     <div
                         onClick={toggle}
