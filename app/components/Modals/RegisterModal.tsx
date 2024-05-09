@@ -14,7 +14,7 @@ import {
 import useRegisterModel from "@/app/hooks/useRegisterModel";
 import Modal from "./Modal";
 import Heading from "../Heading";
-import Input from "../Input/page";
+import Input from "../Input/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
 import { signIn } from "next-auth/react";

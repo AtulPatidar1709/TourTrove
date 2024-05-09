@@ -13,7 +13,7 @@ import ListingCard from "../components/Listings/ListingCard";
 import { Reservation } from "@prisma/client";
 
 interface ReservationsClientProps {
-    reservations: Reservation[];
+    reservations: safeReservation[];
     currentUser?: safeUser | null
 }
 

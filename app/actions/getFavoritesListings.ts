@@ -2,7 +2,7 @@ import prisma from "@/app/libs/Prismadb";
 
 import getCurrentUser from "./getCurrentUser";
 
-export default async function getFavoriteLisings() {
+export default async function getFavoriteListings() {
     try {
         const currentUser = await getCurrentUser();;
 
@@ -18,12 +18,12 @@ export default async function getFavoriteLisings() {
             }
         })
 
-        const safeFavorites = favorites.map((favorite) => ({
-            ...favorite,
-            createAt: favorite.createAt.toISOString()
-        }))
+        // const safeFavorites = favorites.map((favorite) => ({
+        //     ...favorite,
+        //     createAt: favorite.createAt.toISOString()
+        // }))
 
-        return safeFavorites;
+        return favorites;
 
     } catch (error: any) {
         throw new Error(error);

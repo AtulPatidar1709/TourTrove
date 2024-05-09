@@ -1,14 +1,14 @@
 'use client'
 
-import { Reservation } from "@prisma/client";
+import { Listing } from "@prisma/client";
 import { safeListings, safeUser } from "../types";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import ListingCard from "../components/Listings/ListingCard";
 
 interface FavoritesClientProps {
-    listings: Reservation[];
-    currentUser?: safeUser | null;
+    listings: Listing[];
+    currentUser?: safeUser;
 }
 
 const FavoritesClient: React.FC<FavoritesClientProps> = ({

@@ -1,12 +1,12 @@
 import EmptyState from "../components/EmptyState"
 
 import getCurrentUser from "../actions/getCurrentUser"
-import getFavoriteLisings from "../actions/getFavoritesListings"
+import getFavoriteListings from "../actions/getFavoritesListings"
 import FavoritesClient from "./FavoritesClient";
 
 const ListingPage = async () => {
 
-    const listings = await getFavoriteLisings();
+    const listings = await getFavoriteListings();
     const currentUser = await getCurrentUser();
 
     if (listings.length === 0) {

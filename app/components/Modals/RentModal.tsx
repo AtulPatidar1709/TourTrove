@@ -12,7 +12,7 @@ import CategoryInput from "../Input/CategoryInput";
 import dynamic from "next/dynamic";
 import Counter from "../Input/Counter";
 import ImageUpload from "../Input/ImageUpload";
-import Input from "../Input/page";
+import Input from "../Input/Input";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
