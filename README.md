@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tour-Trove
 
-## Getting Started
+**Tour-Trove is an API-based web application designed to enhance the travel booking experience. This project incorporates advanced features to improve user engagement and reduce booking errors, built on a modern web architecture for optimal performance.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Dynamic Listing and Booking:** 
+  - Users can easily browse and book tours through a streamlined interface.
+  - Features real-time updates to ensure the latest information is always available.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Server-Rendered UI with Next.js**:
+  - Next.js is used for server-side rendering, ensuring faster page loads and better SEO.
+  - Provides a smooth and responsive user experience across devices.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Authentication with Clerk**:
+  - Integrated Clerk for user authentication, providing a secure and reliable login system.
+  - Supports various authentication methods, including email/password and social logins.
 
-## Learn More
+- **Custom Booking Management**:
+  - Implemented a custom library to handle all booking-related operations efficiently.
+  - Ensures smooth and error-free booking management.
 
-To learn more about Next.js, take a look at the following resources:
+- **MongoDB for Data Storage**:
+  - Utilized MongoDB for scalable and efficient data storage.
+  - Manages tour listings, bookings, and user data seamlessly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Next.js**: A React framework for building server-rendered applications.
+- **JavaScript**: The programming language used for both front-end and back-end logic.
+- **Clerk**: Authentication service for managing user login and registration.
+- **Custom Booking Library**: A custom-built solution for handling bookings within the application.
+- **MongoDB**: A NoSQL database for storing user data, board information, and booking details.
 
-## Deploy on Vercel
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/vision-space.git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Clone the repository**:
+   ```bash
+   cd vision-space
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **install all dependency**:
+   ```bash
+   npm install
+
+3. **run application**:
+   ```bash
+   npm run dev
