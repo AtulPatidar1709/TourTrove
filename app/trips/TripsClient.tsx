@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-import { safeUser } from "../types"
+import { safeReservation, safeUser } from "../types"
 import Heading from "../components/Heading";
 import { Reservation } from "@prisma/client";
 import Container from "../components/Container";
@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import ListingCard from "../components/Listings/ListingCard";
 
 interface TripsClientProps {
-    reservations: Reservation[];
+    reservations: safeReservation[];
     currentUser?: safeUser | null;
 }
 
@@ -57,7 +57,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
                         reservation={reservation}
                         actionId={reservation.id}
                         onAction={onCancel}
-                        disable={deletingId === reservation.id}
+                        disabled={deletingId === reservation.id}
                         actionLabel="Cancel reservation"
                         currentUser={currentUser}
                     />

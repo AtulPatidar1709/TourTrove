@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/app/libs/Prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import { error } from "console";
 
 export async function POST(
     request: Request
@@ -41,5 +40,6 @@ export async function POST(
             }
         }
     });
+
     return NextResponse.json(listingAndReservation);
 }

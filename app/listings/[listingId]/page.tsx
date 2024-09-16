@@ -14,7 +14,7 @@ const ListingPage = async ({ params }: { params: IParam }) => {
     const reservations = await getReservations(params);
     const currentUser = await getCurrentUser();
 
-    if (!listing) {
+    if (!listing || currentUser === undefined) {
         return (
             <>
                 <EmptyState />

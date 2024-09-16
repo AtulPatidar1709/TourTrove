@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-import { safeListings, safeUser } from "../types"
+import { safeListing, safeUser } from "../types"
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import axios from "axios";
@@ -11,7 +11,7 @@ import ListingCard from "../components/Listings/ListingCard";
 import { Listing } from "@prisma/client";
 
 interface PropertiesClientProps {
-    listings: Listing[];
+    listings: safeListing[];
     currentUser?: safeUser | null;
 }
 
@@ -55,7 +55,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
                         data={listing}
                         actionId={listing.id}
                         onAction={onCancel}
-                        disable={deletingId === listing.id}
+                        disabled={deletingId === listing.id}
                         actionLabel="Delete Property"
                         currentUser={currentUser}
                     />

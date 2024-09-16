@@ -10,11 +10,11 @@ import { safeUser, safeReservation } from "../types";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import ListingCard from "../components/Listings/ListingCard";
-import { Reservation } from "@prisma/client";
+import { Reservation, User } from "@prisma/client";
 
 interface ReservationsClientProps {
     reservations: safeReservation[];
-    currentUser?: safeUser | null
+    currentUser?: safeUser | null;
 }
 
 const ReservationsClient: React.FC<ReservationsClientProps> = ({
@@ -38,7 +38,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
             .finally(() => {
                 setDeletingId('');
             })
-    }, [])
+    }, [router])
 
     return (
         <Container>
@@ -54,7 +54,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
                         reservation={reservation}
                         actionId={reservation.id}
                         onAction={onCancel}
-                        disable={deletingId === reservation.id}
+                        disabled={deletingId === reservation.id}
                         actionLabel="Cancel guest reservation"
                         currentUser={currentUser}
                     />

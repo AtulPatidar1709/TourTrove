@@ -18,12 +18,12 @@ export default async function getFavoriteListings() {
             }
         })
 
-        // const safeFavorites = favorites.map((favorite) => ({
-        //     ...favorite,
-        //     createAt: favorite.createAt.toISOString()
-        // }))
+        const safeFavorites = favorites.map((favorite) => ({
+            ...favorite,
+            createdAt: favorite.createdAt.toISOString()
+        }))
 
-        return favorites;
+        return safeFavorites;
 
     } catch (error: any) {
         throw new Error(error);

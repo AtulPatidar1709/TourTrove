@@ -1,4 +1,3 @@
-import { error } from 'console';
 import prisma from "@/app/libs/Prismadb";
 
 interface IParams {
@@ -36,18 +35,18 @@ export default async function getReservations(
             }
         });
 
-        // const safeReservations = reservation.map((reservation) => ({
-        //     ...reservation,
-        //     createdAt: reservation.createdAt.toISOString(),
-        //     startDate: reservation.endDate.toISOString(),
-        //     endDate: reservation.endDate.toISOString(),
-        //     listing: {
-        //         ...reservation.listing,
-        //         createAt: reservation.listing.createAt.toISOString()
-        //     }
-        // }));
+        const safeReservations = reservation.map((reservation) => ({
+            ...reservation,
+            createdAt: reservation.createdAt.toISOString(),
+            startDate: reservation.startDate.toISOString(),
+            endDate: reservation.endDate.toISOString(),
+            listing: {
+                ...reservation.listing,
+                createdAt: reservation.listing.createdAt.toISOString()
+            }
+        }));
 
-        return reservation;
+        return safeReservations;
     } catch (error: any) {
         throw new Error(error);
     }

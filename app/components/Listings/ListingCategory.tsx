@@ -1,6 +1,5 @@
 'use client'
 
-import { Icon } from "leaflet"
 import { IconType } from "react-icons"
 
 interface ListingCategoryProps {

@@ -22,14 +22,15 @@ export default async function getListingById(
         if (!listing) {
             return null;
         }
+        // return listing;
         return {
             ...listing,
-            createdAt: listing.createAt.toISOString(),
+            createdAt: listing.createdAt.toISOString(),
             user: {
                 ...listing.user,
                 createdAt: listing.user.createdAt.toISOString(),
-                updatedAt: listing.user.createdAt.toISOString(),
-                emailVerified: listing.user.emailVerified?.toISOString() || null,
+                updatedAt: listing.user.updatedAt.toISOString(),
+                // emailVerified: listing.user.emailVerified?.toISOString() || null,
             }
         };
     } catch (error: any) {
