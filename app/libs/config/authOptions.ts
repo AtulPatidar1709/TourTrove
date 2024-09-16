@@ -5,7 +5,7 @@ import prisma from "@/app/libs/Prismadb"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials"
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 
 let users: any[] = [];
 

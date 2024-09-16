@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';  // Forces dynamic rendering
+
 import getCurrentUser from "./actions/getCurrentUser";
 import getListings, { IListingsParams } from "./actions/getListings";
 import Container from "./components/Container";
@@ -42,7 +44,7 @@ const Home = async ({ searchParams }: HomeProps) => {
           );
         })}
       </div>
-    </Container >
+    </Container>
   );
 }
 

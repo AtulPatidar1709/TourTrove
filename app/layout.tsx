@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 
 import RegisterModal from "./components/Modals/RegisterModal";
 import LoginModel from "./components/Modals/LoginModel";
@@ -23,7 +23,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser();
+
   return (
     <html lang="en">
       <body className={font.className}>
@@ -32,7 +32,7 @@ export default async function RootLayout({
         <SearchModal />
         <LoginModel />
         <RegisterModal />
-        <Navbar currentUser={currentUser} />
+        <Navbar />
         <div className="pb-20 pt-20">
           {children}
         </div>

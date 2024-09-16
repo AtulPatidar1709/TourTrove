@@ -1,5 +1,6 @@
-"use client";
+// Navbar.tsx
 
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import Container from "../Container";
 import Categories from "./Categories";
 import Logo from "./Logo";
@@ -11,9 +12,8 @@ interface NavbarProps {
   currentUser?: safeUser | null;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  currentUser
-}) => {
+const Navbar = async () => {
+  const currentUser = await getCurrentUser();
 
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
@@ -30,3 +30,5 @@ export const Navbar: React.FC<NavbarProps> = ({
     </div>
   );
 };
+
+export default Navbar;
