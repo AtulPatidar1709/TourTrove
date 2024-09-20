@@ -8,6 +8,7 @@ import { usePathname, useSearchParams } from "next/navigation"
 import { FaSkiing } from "react-icons/fa"
 import { BsSnow } from "react-icons/bs"
 import { IoDiamond } from "react-icons/io5"
+import withSuspense from "../withSuspense";
 
 export const categories = [
     {
@@ -125,4 +126,4 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default withSuspense(Categories)

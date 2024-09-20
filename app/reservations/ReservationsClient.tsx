@@ -1,8 +1,8 @@
 'use client'
 
 import { toast } from "react-hot-toast";
-import axios from "axios"
-import { useCallback, useState } from "react";
+import axios from "axios";
+import { useCallback, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { safeUser, safeReservation } from "../types";
@@ -10,7 +10,6 @@ import { safeUser, safeReservation } from "../types";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import ListingCard from "../components/Listings/ListingCard";
-import { Reservation, User } from "@prisma/client";
 
 interface ReservationsClientProps {
     reservations: safeReservation[];
@@ -23,22 +22,30 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
 }) => {
 
     const router = useRouter();
-    const [deletingId, setDeletingId] = useState('')
+    const [deletingId, setDeletingId] = useState('');
 
     const onCancel = useCallback((id: string) => {
         setDeletingId(id);
-        axios.delete(`/api/reservations/${id}`)
-            .then(() => {
-                toast.success('Reservation cancelled')
-                router.refresh();
-            })
-            .catch(() => {
-                toast.error('Something went wrong.');
-            })
-            .finally(() => {
-                setDeletingId('');
-            })
-    }, [router])
+
+        // Optimistically update UI before the request is completed
+        const updatedReservations = reservations.filter(reservation => reservation.id !== id);
+
+        // Simulate refreshing UI without waiting for the request
+        toast.promise(
+            axios.delete(`/api/reservations/${id}`),
+            {
+                loading: 'Cancelling reservation...',
+                success: 'Reservation cancelled',
+                error: 'Something went wrong.'
+            }
+        ).then(() => {
+            router.refresh(); // Still refresh the page for accurate data
+        }).finally(() => {
+            setDeletingId('');
+        });
+    }, [reservations, router]);
+
+    const reservationList = useMemo(() => reservations, [reservations]);
 
     return (
         <Container>
@@ -46,8 +53,8 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
                 title="Reservations"
                 subtitle="Bookings on your properties"
             />
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-                {reservations.map((reservation) => (
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+                {reservationList.map((reservation) => (
                     <ListingCard
                         key={reservation.id}
                         data={reservation.listing}
@@ -61,7 +68,7 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
                 ))}
             </div>
         </Container>
-    )
-}
+    );
+};
 
 export default ReservationsClient;

@@ -15,6 +15,7 @@ import Heading from '../Heading';
 // import Map from '../Map';
 import Calender from '../Input/Calender';
 import Counter from '../Input/Counter';
+import withSuspense from '../withSuspense';
 
 enum STEPS {
     LOCATION = 0,
@@ -40,7 +41,7 @@ const SearchModal = () => {
 
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr: false
-    }), [location]);
+    }), []);
 
     const onBack = useCallback(
         () => {
@@ -183,4 +184,4 @@ const SearchModal = () => {
     )
 }
 
-export default SearchModal;
+export default withSuspense(SearchModal);

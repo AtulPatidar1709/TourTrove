@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
-import { Listing } from "@prisma/client";
 import { safeListing, safeUser } from "../types";
 import Heading from "../components/Heading";
 import Container from "../components/Container";
 import ListingCard from "../components/Listings/ListingCard";
+import EmptyState from "../components/EmptyState";
 
 interface FavoritesClientProps {
     listings: safeListing[];
@@ -15,6 +15,15 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
     listings,
     currentUser
 }) => {
+    if (listings.length === 0) {
+        return (
+            <EmptyState
+                title="No favorites found"
+                subtitle="Looks like you have no favorite listings."
+            />
+        );
+    }
+
     return (
         <Container>
             <Heading
@@ -31,7 +40,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
                 ))}
             </div>
         </Container>
-    )
+    );
 }
 
 export default FavoritesClient;

@@ -6,6 +6,7 @@ import useSearchModel from "../../hooks/useSearchModal";
 import useCountries from "@/app/hooks/useCountries";
 import { useMemo } from "react";
 import { differenceInDays } from "date-fns";
+import withSuspense from "../withSuspense";
 
 const Search = () => {
   const searchModal = useSearchModel();
@@ -85,4 +86,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default withSuspense(Search);
