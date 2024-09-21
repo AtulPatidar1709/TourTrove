@@ -43,19 +43,23 @@ const RegisterModal = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setisLoading(true);
 
+        console.log('Form Data:', data); // Add this log
+
         axios.post('/api/register', data)
             .then(() => {
-                toast.success('User Created')
+                toast.success('User Created');
                 RegisterModal.onClose();
                 loginModel.onOpen();
             })
             .catch((error) => {
-                toast.error('Something went wrong')
+                console.error('Error:', error.response?.data); // Log the error details
+                toast.error('Something went wrong');
             })
             .finally(() => {
                 setisLoading(false);
-            })
-    }
+            });
+    };
+
 
     const toggle = useCallback(
         () => {

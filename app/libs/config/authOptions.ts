@@ -1,16 +1,15 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { AuthOptions } from "next-auth"
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { AuthOptions } from "next-auth";
+import prisma from "@/app/libs/Prismadb";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
+import { connectDB } from "../dbConfig";
 
-import prisma from "@/app/libs/Prismadb"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
-import Credentials from "next-auth/providers/credentials"
-import bcrypt from "bcryptjs"
-
-let users: any[] = [];
+connectDB(); // Ensure this is called appropriately
 
 export const authOptions: AuthOptions = {
-
     adapter: PrismaAdapter(prisma),
     providers: [
         GithubProvider({
@@ -24,29 +23,21 @@ export const authOptions: AuthOptions = {
         Credentials({
             name: 'credentials',
             credentials: {
-                email: { label: 'email', type: 'text' },
-                password: { label: 'password', type: 'password' },
+                email: { label: 'Email', type: 'text' },
+                password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
-                if (!credentials?.email || !credentials?.password) {
-                    throw new Error('Invalid credentials')
+                const { email, password } = credentials || {};
+                if (!email || !password) {
+                    throw new Error('Please enter your email and password.');
                 }
 
-                const user = await prisma.user.findUnique({
-                    where: {
-                        email: credentials.email
-                    }
-                });
-
-                if (!user || !user?.hashedPassword) {
-                    throw new Error('Invalid Credentials')
+                const user = await prisma.user.findUnique({ where: { email } });
+                if (!user || !user.hashedPassword) {
+                    throw new Error('Invalid credentials');
                 }
 
-                const isCorrectPassword = await bcrypt.compare(
-                    credentials.password,
-                    user.hashedPassword
-                );
-
+                const isCorrectPassword = await bcrypt.compare(password, user.hashedPassword);
                 if (!isCorrectPassword) {
                     throw new Error('Invalid credentials');
                 }
@@ -55,9 +46,8 @@ export const authOptions: AuthOptions = {
             }
         })
     ],
-
     pages: {
-        signIn: '/',
+        signIn: '/auth/signin', // Adjusted path for clarity
     },
     debug: process.env.NODE_ENV === 'development',
     session: {
