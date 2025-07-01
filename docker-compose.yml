@@ -1,5 +1,6 @@
 services:
   web:
+    image: "patidar17/vison-space:latest"
     depends_on:
       - mongodb # Ensures the 'mongodb' service starts before 'web'
     env_file: ".env.local" # Loads environment variables from a local .env file
@@ -17,9 +18,6 @@ services:
         - path: .
           target: /app
           action: sync
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
       - "3000:3000" # Maps host port 80 to container port 80
     restart: unless-stopped
