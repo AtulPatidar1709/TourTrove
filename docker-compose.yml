@@ -1,0 +1,37 @@
+services:
+  web:
+    depends_on:
+      - mongodb # Ensures the 'mongodb' service starts before 'web'
+    env_file: ".env.local" # Loads environment variables from a local .env file
+    hostname: tourtrove
+    develop:
+      # we specify the files to watch for changes
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./next.config.js
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+          # it'll watch for changes in the frontend directory and sync the changes with the container real time
+        - path: .
+          target: /app
+          action: sync
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # Maps host port 80 to container port 80
+    restart: unless-stopped
+
+  mongodb:
+    hostname: mongodb
+    image: mongo
+
+    ports:
+      - 27017:27017
+    volumes:
+      - db_data:/data/db
+    restart: unless-stopped
+volumes:
+  db_data: # Defines a named volume for persistent database storage
