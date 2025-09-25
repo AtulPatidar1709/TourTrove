@@ -55,7 +55,7 @@ https://github.com/user-attachments/assets/3d11fb10-56d8-4e4a-9127-a275963d81ba
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/vision-space.git
+   git clone https://github.com/yourusername/TourTrove.git
 
 2. **Clone the repository**:
    ```bash
